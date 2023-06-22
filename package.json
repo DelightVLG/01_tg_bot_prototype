@@ -1,0 +1,11 @@
+{
+  "name": "tg_bot_01",
+  "version": "0.0.1",
+  "description": "The first Telegram bot prototype",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sergey",
+  "license": "ISC"
+}
