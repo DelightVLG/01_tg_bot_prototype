@@ -1,14 +1,18 @@
-import { Request, Response } from 'express';
+import { Telegraf } from 'telegraf';
+import 'dotenv/config';
 
-const express = require('express');
+const token = process.env.TG_BOT_TOKEN;
+if (!token) {
+  throw new Error('Environment TG_BOT_TOKEN must be specified');
+}
+const bot = new Telegraf(token);
 
-const app = express();
-const port = 3000;
+bot.start((ctx) => ctx.reply('Добро пожаловать!'));
+bot.hears('hi', (ctx) => ctx.reply('Приветики!'));
+bot.launch();
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+// Enable graceful stop
+process.once('SIGINT', () => bot.stop('SIGINT'));
+process.once('SIGTERM', () => bot.stop('SIGTERM'));
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+console.log('APP Started');
