@@ -7,28 +7,37 @@ if (!token) {
 }
 const bot = new Telegraf(token);
 
-bot.start(async (ctx) => {
+bot.start(async ctx => {
   await ctx.reply(`Hello ${ctx.from.first_name} `);
-  await ctx.sendSticker('https://tlgrm.eu/_/stickers/ccd/a8d/ccda8d5d-d492-4393-8bb7-e33f77c24907/256/7.webp');
+  await ctx.sendSticker(
+    'https://tlgrm.eu/_/stickers/ccd/a8d/ccda8d5d-d492-4393-8bb7-e33f77c24907/256/7.webp',
+  );
   await bot.telegram.setMyCommands([
     { command: 'yo', description: 'Сказать йоу' },
     { command: 'wazup', description: 'Сказать вазап' },
   ]);
 });
 
-bot.command('yo', async (ctx) => {
+bot.command('yo', async ctx => {
   await ctx.reply('Yo yo yo yo ✌️🤙🫶 ');
-  await ctx.sendSticker('https://tlgrm.eu/_/stickers/ccd/a8d/ccda8d5d-d492-4393-8bb7-e33f77c24907/256/21.webp');
+
+  await ctx.sendSticker(
+    'https://tlgrm.eu/_/stickers/ccd/a8d/ccda8d5d-d492-4393-8bb7-e33f77c24907/256/21.webp',
+  );
 });
 
-bot.command('wazup', async (ctx) => {
+bot.command('wazup', async ctx => {
   await ctx.reply('Wazuuuuuuup 🧖👋🖐️');
-  await ctx.sendSticker('https://tlgrm.eu/_/stickers/ccd/a8d/ccda8d5d-d492-4393-8bb7-e33f77c24907/256/15.webp');
+  await ctx.sendSticker(
+    'https://tlgrm.eu/_/stickers/ccd/a8d/ccda8d5d-d492-4393-8bb7-e33f77c24907/256/15.webp',
+  );
 });
 
-bot.on('text', async (ctx) => {
-  await ctx.reply('Я пока слишком тупой, что бы понять что ты мне пишешь, но я скоро закинусь ChatGpt 4 и будет хорошо 😈😈😈');
-});
+bot.on('text', async ctx =>
+  ctx.reply(
+    'Я пока слишком тупой, что бы понять что ты мне пишешь, но я скоро закинусь ChatGpt 4 и будет хорошо 😈😈😈',
+  ),
+);
 
 bot.launch();
 
